@@ -8,3 +8,9 @@ class RGB:
         self.green = g
         self.blue = b
 
+    def get_difference(self, color):
+        difference = 0
+        difference += abs(self.red - color.red)
+        difference += abs(self.green - color.green)
+        difference += abs(self.blue - color.blue)
+        return difference

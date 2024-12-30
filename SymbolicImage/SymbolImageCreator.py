@@ -4,17 +4,17 @@ import random
 from PIL import Image, ImageDraw
 
 from Image.SegmentedImage import SegmentedImage
+from SymbolicImage.ImageCreator import ImageCreator
 from SymbolicImage.SymbolImageCreatorParams import SymbolImageCreatorParams
 from settings import symbol_image_prefix
 
 
-class SymbolImageCreator:
+class SymbolImageCreator(ImageCreator):
     __last_used_symbol: int = 0
 
 
     def __init__(self, path: str, settings: SymbolImageCreatorParams = SymbolImageCreatorParams()):
-        self.image = Image.open(path)
-        self.file_name = os.path.basename(self.image.filename)
+        super().__init__(path)
         self.settings = settings
 
     def set_settings(self, settings: SymbolImageCreatorParams):
@@ -56,9 +56,3 @@ class SymbolImageCreator:
             symbol = self.settings.use_symbol[self.__last_used_symbol]
             self.__last_used_symbol += 1
             return symbol
-
-    def save_image(self, path: str = '', rewrite_image: bool = False):
-        if not rewrite_image:
-            self.image.save(f'{path}\\{symbol_image_prefix}{self.file_name}')
-        else:
-            self.image.save(self.image.filename)

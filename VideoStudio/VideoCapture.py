@@ -2,6 +2,7 @@ import cv2
 from rich.progress import Progress
 
 from FileWorker import FileWorker
+from settings import path_to_frames, frame_prefix
 
 
 class VideoCapture:
@@ -16,7 +17,7 @@ class VideoCapture:
 
 
     def take_frame_from_video(self, ever_frame:int = 60):
-        FileWorker.delete_files_in_folder("VideoStudio/frames")
+        FileWorker.delete_files_in_folder(path_to_frames)
         with Progress() as progress:
             task1 = progress.add_task("[green] Генерируем кадры [#]", total=self.frame_count)
 
@@ -28,7 +29,7 @@ class VideoCapture:
                 if not ret:
                     break
                 if frame_number % ever_frame == 0:
-                    cv2.imwrite(f"VideoStudio\\frames\\frame_{img_number}.jpg", frame)
+                    cv2.imwrite(f"{path_to_frames}\\{frame_prefix}{img_number}.jpg", frame)
                     img_number += 1
 
                 frame_number += 1

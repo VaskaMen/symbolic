@@ -1,10 +1,12 @@
 from PIL import ImageFont
 
+from settings import default_font_path
+
 
 class SymbolImageCreatorParams:
 
     __font_size = 10
-    __font_path: str = 'VideoStudio/noto.ttf'
+    __font_path: str = default_font_path
     font = ImageFont.truetype(__font_path, size=__font_size)
     use_symbol: list[str] = ["#"]
 

@@ -2,10 +2,10 @@ import os
 import random
 
 from PIL import Image, ImageDraw
-from PIL.ImageFile import ImageFile
 
 from Image.SegmentedImage import SegmentedImage
-from VideoStudio.SymbolImageCreatorParams import SymbolImageCreatorParams
+from SymbolicImage.SymbolImageCreatorParams import SymbolImageCreatorParams
+from settings import symbol_image_prefix
 
 
 class SymbolImageCreator:
@@ -19,10 +19,6 @@ class SymbolImageCreator:
 
     def set_settings(self, settings: SymbolImageCreatorParams):
         self.settings = settings
-
-    def create_empty_symbol_image(self, image: ImageFile) -> Image:
-        symbol_image = Image.new('RGB', (image.width, image.height), 'black')
-        return symbol_image
 
     def make_image_symbolic(self, quality: int):
         segmented_image = SegmentedImage(self.image, quality)
@@ -63,6 +59,6 @@ class SymbolImageCreator:
 
     def save_image(self, path: str = '', rewrite_image: bool = False):
         if not rewrite_image:
-            self.image.save(f'{path}\\symbolic_{self.file_name}')
+            self.image.save(f'{path}\\{symbol_image_prefix}{self.file_name}')
         else:
             self.image.save(self.image.filename)

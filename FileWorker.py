@@ -12,3 +12,9 @@ class FileWorker:
                     os.remove(file_path)
             except Exception as e:
                 print(f'Ошибка при удалении файла {file_path}. {e}')
+
+    @staticmethod
+    def create_folder(folder_path: str):
+        file_exist = os.path.exists(folder_path)
+        if not file_exist:
+            os.mkdir(folder_path)

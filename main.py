@@ -5,12 +5,10 @@ from tkinter import filedialog
 
 from rich.console import Console
 
-from VideoStudio.SymbolImageCreator import SymbolImageCreator
-from VideoStudio.SymbolImageCreatorParams import SymbolImageCreatorParams
+from SymbolicImage.SymbolImageCreator import SymbolImageCreator
+from SymbolicImage.SymbolImageCreatorParams import SymbolImageCreatorParams
 from VideoStudio.VideoCreator import VideoCreator
 from VideoStudio.VideoCapture import VideoCapture
-
-
 
 
 console = Console()
